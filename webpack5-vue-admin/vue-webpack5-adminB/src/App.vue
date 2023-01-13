@@ -5,10 +5,11 @@
 
 <script>
 import { defineAsyncComponent } from 'vue'
+import countDown from 'A/countDown'
 
-const countDown = defineAsyncComponent(() =>
-        import('A/countDown')
-)
+// const countDown = defineAsyncComponent(() =>
+//   import('A/countDown')
+// )
 export default {
   components: { countDown },
   setup() {

@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // 最新的 vue-loader 中，VueLoaderPlugin 插件的位置有所改变
 const { VueLoaderPlugin } = require('vue-loader/dist/index')
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 module.exports = {
   mode: 'development',
   entry: path.resolve(__dirname, './src/main.js'),
@@ -14,26 +14,25 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        use: [
-          'vue-loader'
-        ]
+        use: ['vue-loader']
       },
       {
         test: /\.css$/,
-          use: [
-            'style-loader',
-            'css-loader'
-          ]
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader'
+      },
+      {
+        test: /\.(eot|woff|ttf|woff2)(\?.*)?$/,
+        loader: 'file-loader'
       }
     ]
   },
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
-    port: 8080,
+    port: 8091,
     publicPath: '/'
   },
   plugins: [
@@ -45,8 +44,8 @@ module.exports = {
     // 添加 VueLoaderPlugin 插件
     new VueLoaderPlugin(),
     new ModuleFederationPlugin({
-      name: "A", // 暴露出去的模块名
-      filename: "remoteEntry.js", // 构建出来的文件名
+      name: 'A', // 暴露出去的模块名
+      filename: 'remoteEntry.js', // 构建出来的文件名
       exposes: {
         './countDown': './src/components/countDown.vue' // 暴露出去。key，要写相对路径
       }
